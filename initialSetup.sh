@@ -16,4 +16,4 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 
-docker run -d --name=mycontainer -v "$PWD:/app" -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=notes local_env_img
+sudo docker run -d --name=mycontainer -v "$PWD:/app" -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=notes local_env_img
