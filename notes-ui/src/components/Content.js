@@ -73,7 +73,7 @@ class Content extends Component {
 
         return (
                 <div class='return'>
-                    <Link class='link' to={"/"}><h1> Back to list</h1></Link>
+                    <Link class='link' to={"/"}><h1> Back to list2</h1></Link>
                     {this.renderNoteContent()}
                 </div>
         )

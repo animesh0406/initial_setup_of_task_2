@@ -1,4 +1,3 @@
-
 echo "Checking docker installation"
 if command -v docker &> /dev/null; then
     echo "Docker installation found"
@@ -11,7 +10,7 @@ else
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-# Add the repository to Apt sources:
+    # Add the repository to Apt sources:
     echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
@@ -21,7 +20,11 @@ else
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 fi
 
+if [ "$1" = "install" ]; then
+    sudo docker compose up -d
+elif [ "$1" = "run" ]; then
+    sudo docker exec app bash -c ./runCode.sh
+else
+    echo "Unknown command. Please specify either 'install' or 'run'."
+fi
 
-
-sudo docker build -t local_env_img:latest .
-sudo docker run -d --name=mycontainer -v "$PWD:/app" -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=notes local_env_img
